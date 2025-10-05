@@ -1,12 +1,12 @@
 import { useState } from "react";
 
-const InputTodo = ({ onClickSave }) => {
+const InputTodo = ({ onAddTodo }) => {
   const [inputTodo, setInputTodo] = useState("");
   const onClick = () => {
     if (inputTodo === "") {
       return;
     }
-    onClickSave(inputTodo);
+    onAddTodo(inputTodo);
     setInputTodo("");
   };
   return (
