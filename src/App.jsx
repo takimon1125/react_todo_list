@@ -21,46 +21,23 @@ function App() {
     ]);
   };
 
-  const onChangeCompleted = (index) => {
-    const newTodos = [...todos];
-    newTodos[index] = {
-      id: todos[index].id,
-      title: todos[index].title,
-      isCompleted: !todos[index].isCompleted,
-      isEdited: todos[index].isEdited,
-    };
-    setTodos(newTodos);
+  const onChangeCompleted = (id) => {
+    setTodos(todos.map((todo) => (todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo)));
   };
 
-  const onClickEdit = (index) => {
-    const newTodos = [...todos];
-    newTodos[index] = {
-      id: todos[index].id,
-      title: todos[index].title,
-      isCompleted: todos[index].isCompleted,
-      isEdited: true,
-    };
-    setTodos(newTodos);
+  const onClickEdit = (id) => {
+    setTodos(todos.map((todo) => (todo.id === id ? { ...todo, isEdited: true } : todo)));
   };
 
-  const onClickEditSave = (index, title) => {
-    const newTodos = [...todos];
-    newTodos[index] = {
-      id: todos[index].id,
-      title: title,
-      isCompleted: todos[index].isCompleted,
-      isEdited: false,
-    };
-    setTodos(newTodos);
+  const onClickEditSave = (id, title) => {
+    setTodos(todos.map((todo) => (todo.id === id ? { ...todo, title: title, isEdited: false } : todo)));
   };
 
-  const onClickDelete = (index) => {
+  const onClickDelete = (id) => {
     if (!confirm("本当によろしいですか？")) {
       return;
     }
-    const newTodos = [...todos];
-    newTodos.splice(index, 1);
-    setTodos(newTodos);
+    setTodos(todos.filter((todo) => todo.id !== id));
   };
 
   return (
