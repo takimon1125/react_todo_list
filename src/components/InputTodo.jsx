@@ -3,10 +3,11 @@ import { useState } from "react";
 const InputTodo = ({ onAddTodo }) => {
   const [inputTodo, setInputTodo] = useState("");
   const onClick = () => {
-    if (inputTodo === "") {
+    const inputTodoTrim = inputTodo.trim();
+    if (inputTodoTrim === "") {
       return;
     }
-    onAddTodo(inputTodo);
+    onAddTodo(inputTodoTrim);
     setInputTodo("");
   };
   return (
